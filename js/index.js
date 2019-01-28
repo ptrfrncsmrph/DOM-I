@@ -38,5 +38,28 @@ const siteContent = {
 };
 
 // Example: Update the img src for the logo
-let logo = document.getElementById("logo-img");
-logo.setAttribute('src', siteContent["nav"]["img-src"])
+
+const render = () => {
+  let logo = document.getElementById("logo-img");
+  logo.setAttribute('src', siteContent["nav"]["img-src"])
+
+  const navAnchors = document.querySelectorAll("nav a")
+  navAnchors.forEach((a, i) => {
+    a.innerText = siteContent.nav[`nav-item-${i + 1}`]
+  })
+  
+  const [h1] = Array.from(document.getElementsByTagName("h1"))
+  h1.innerHTML = siteContent.cta.h1.split(" ").join("<br/>")
+
+  const button = document.querySelector(".cta-text button")
+  button.innerText = siteContent.cta.button
+
+  const ctaImg = document.getElementById("cta-img")
+  ctaImg.setAttribute("src", siteContent.cta["img-src"])
+
+  const mainContent = document.querySelector(".main-content")
+  const textContents = mainContent.querySelectorAll(".text-content")
+  console.log(textContents)
+}
+
+window.onload = render
