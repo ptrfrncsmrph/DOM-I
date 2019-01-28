@@ -77,6 +77,8 @@ const render = () => {
   address.innerText = siteContent.contact.address
   phone.innerText = siteContent.contact.phone
   email.innerText = siteContent.contact.email
+
+  document.querySelector("footer").innerText = siteContent.footer.copyright
 }
 
 window.onload = render
