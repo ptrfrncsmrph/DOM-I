@@ -59,7 +59,14 @@ const render = () => {
 
   const mainContent = document.querySelector(".main-content")
   const textContents = mainContent.querySelectorAll(".text-content")
-  console.log(textContents)
+  const textContentNames = ["features", "about", "services", "product", "vision"]
+  textContents.forEach((textContent, i) => {
+     const h4 = textContent.querySelector("h4")
+     const p = textContent.querySelector("p")
+     const name = textContentNames[i]
+     h4.innerText = siteContent["main-content"][`${name}-h4`]
+     p.innerText = siteContent["main-content"][`${name}-content`]
+  })
 }
 
 window.onload = render
