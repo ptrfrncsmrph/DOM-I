@@ -67,6 +67,16 @@ const render = () => {
      h4.innerText = siteContent["main-content"][`${name}-h4`]
      p.innerText = siteContent["main-content"][`${name}-content`]
   })
+
+  const middleImg = document.getElementById("middle-img")
+  middleImg.setAttribute("src", siteContent["main-content"]["middle-img-src"])
+
+  const contactSection = document.querySelector(".contact")
+  contactSection.querySelector("h4").innerText = siteContent.contact["contact-h4"]
+  const [address, phone, email] = Array.from(contactSection.querySelectorAll("p"))
+  address.innerText = siteContent.contact.address
+  phone.innerText = siteContent.contact.phone
+  email.innerText = siteContent.contact.email
 }
 
 window.onload = render
