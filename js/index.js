@@ -79,6 +79,23 @@ const render = () => {
   email.innerText = siteContent.contact.email
 
   document.querySelector("footer").innerText = siteContent.footer.copyright
+
+  const nav = document.querySelector("nav");
+  const additionalAnchors = ["Help", "Notable Clientele"]
+  additionalAnchors.map(e => {
+    const newEl = document.createElement("a")
+    newEl.innerText = e
+    return newEl
+  }).forEach((e, i) => { 
+    i === 0 
+    ? nav.prepend(e)
+    : nav.appendChild(e)
+  })
+
+  nav.querySelectorAll("a").forEach(a => {
+    a.setAttribute("style", "color: green;")
+  })
+
 }
 
 window.onload = render
