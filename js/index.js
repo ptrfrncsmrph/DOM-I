@@ -38,5 +38,64 @@ const siteContent = {
 };
 
 // Example: Update the img src for the logo
-let logo = document.getElementById("logo-img");
-logo.setAttribute('src', siteContent["nav"]["img-src"])
+
+const render = () => {
+  let logo = document.getElementById("logo-img");
+  logo.setAttribute('src', siteContent["nav"]["img-src"])
+
+  const navAnchors = document.querySelectorAll("nav a")
+  navAnchors.forEach((a, i) => {
+    a.innerText = siteContent.nav[`nav-item-${i + 1}`]
+  })
+  
+  const [h1] = Array.from(document.getElementsByTagName("h1"))
+  h1.innerHTML = siteContent.cta.h1.split(" ").join("<br/>")
+
+  const button = document.querySelector(".cta-text button")
+  button.innerText = siteContent.cta.button
+
+  const ctaImg = document.getElementById("cta-img")
+  ctaImg.setAttribute("src", siteContent.cta["img-src"])
+
+  const mainContent = document.querySelector(".main-content")
+  const textContents = mainContent.querySelectorAll(".text-content")
+  const textContentNames = ["features", "about", "services", "product", "vision"]
+  textContents.forEach((textContent, i) => {
+     const h4 = textContent.querySelector("h4")
+     const p = textContent.querySelector("p")
+     const name = textContentNames[i]
+     h4.innerText = siteContent["main-content"][`${name}-h4`]
+     p.innerText = siteContent["main-content"][`${name}-content`]
+  })
+
+  const middleImg = document.getElementById("middle-img")
+  middleImg.setAttribute("src", siteContent["main-content"]["middle-img-src"])
+
+  const contactSection = document.querySelector(".contact")
+  contactSection.querySelector("h4").innerText = siteContent.contact["contact-h4"]
+  const [address, phone, email] = Array.from(contactSection.querySelectorAll("p"))
+  address.innerText = siteContent.contact.address
+  phone.innerText = siteContent.contact.phone
+  email.innerText = siteContent.contact.email
+
+  document.querySelector("footer").innerText = siteContent.footer.copyright
+
+  const nav = document.querySelector("nav");
+  const additionalAnchors = ["Help", "Notable Clientele"]
+  additionalAnchors.map(e => {
+    const newEl = document.createElement("a")
+    newEl.innerText = e
+    return newEl
+  }).forEach((e, i) => { 
+    i === 0 
+    ? nav.prepend(e)
+    : nav.appendChild(e)
+  })
+
+  nav.querySelectorAll("a").forEach(a => {
+    a.setAttribute("style", "color: green;")
+  })
+
+}
+
+window.onload = render
